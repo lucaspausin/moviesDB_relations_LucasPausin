@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<%- include('partials/head') %>
+	<body>
+		<%- include('partials/header') %>
+		<div class="container d-flex justify-content-center">
+			<div class="mt-5">
+				<div class="card text-center">
+					<div class="card-header">Bienvenido</div>
+					<div class="card-body">
+						<h1 class="card-title"><%= title %></h1>
+						<div class="d-flex flex-column gap-3 m-5">
+							<a href="/movies" class="btn btn-dark">Peliculas</a>
+							<a href="/genres" class="btn btn-dark">Generos</a>
+							<a href="#" class="btn btn-dark">Actores</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head',{
+    title: movie.title
+}) %>
+<body>
+<%- include('partials/header') %>
+<div class="container d-flex justify-content-center mt-5">
+    <div class="card" style="width: 18rem;">
+        <img src="/img/<%= movie.image || 'logo-DH.png' %>"  class="card-img-top" alt="...">
+        <div class="card-body text-center">
+            <h1><%= movie.title %> </h1>  
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Rating: <%= movie.rating %></li>
+          <li class="list-group-item">Premios:  <%= movie.awards %></li>
+          <li class="list-group-item">Duración: <%= movie.length + ' minutos'%> </li>
+          <li class="list-group-item">Fecha de estreno: <%= movie.release_date %> </li>
+        </ul>
+        <ul class="list-group list-group-flush">
+            <div class="m-3">
+                <h5>Actores</h5>
+            <% movie.actors.forEach(actor => { %>
+                <li lass="list-group-item"><%= actor.first_name %> <%= actor.last_name %></li>
+            <% }) %>
+            </div>
+        </ul>
+        <div class="card-body">
+          <a href="/movies/edit/<%= movie.id %>" class="btn btn-success">Editar</a>
+          <a href="/movies/delete/<%= movie.id %>" class="btn btn-danger">Eliminar</a>
+        </div>
+      </div>
+</div>
+</body>
+</html>

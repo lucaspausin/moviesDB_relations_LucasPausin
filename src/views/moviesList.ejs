@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<%- include('partials/head',{
+    title: 'Lista de peliculas'
+}) %>
+<body>
+<%- include('partials/header') %>
+    <div class="container col-lg-8 m-auto">
+    <div class="d-flex justify-content-between mt-3 mb-3 align-items-center">
+        <h1>LISTADO DE PELÍCULAS</h1>
+        <a href="/movies/add">
+            <button class="btn btn-lg btn-secondary">
+                Agregar una pelicula
+            </button>
+        </a>
+    </div>
+    <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Genero</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% movies.forEach(movie=> { %>
+            <tr>
+                <th scope="row">
+                    <%= movie.id %>
+                </th>
+                <td>
+                    <%= movie.title %>
+                </td>
+                <td>
+                    <%= movie.genre?.name %>
+                </td>
+                <td>
+                    <div class="d-flex gap-2">
+                        <a href="/movies/detail/<%= movie.id %>">
+                            <button class="btn btn-secondary">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </a>
+                        <a href="/movies/edit/<%= movie.id %>">
+                            <button class="btn btn-success">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </a>
+                        <a href="/movies/delete/<%= movie.id %>">
+                            <button class="btn btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </a>
+                    </div>
+                </td>
+            <% }) %>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</body>
+
+</html>

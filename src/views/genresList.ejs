@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<%- include('partials/head',{
+    title: 'Lista de peliculas'
+}) %>
+<body>
+<%- include('partials/header') %>
+    <div class="container col-lg-8 m-auto">
+    <div class="d-flex justify-content-between mt-3 mb-3 align-items-center">
+        <h1>LISTADO DE GENEROS</h1>
+        <a href="#">
+            <button class="btn btn-lg btn-primary">
+                Agregar un genero
+            </button>
+        </a>
+    </div>
+    <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Ranking</th>
+            <th scope="col">Activo</th>
+            <th scope="col">Acciones</th>
+            <th scope="col">Peliculas</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% genres.forEach(genre=> { %>
+            <tr>
+                <th scope="row">
+                    <%= genre.id %>
+                </th>
+                <td scope="row">
+                    <%= genre.name %>
+                </td>
+                <td scope="row">
+                    <%= genre.ranking %>
+                </td>
+                <td scope="row">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" <%= genre.active && 'checked' %> id="">
+                      </div>
+                </td>
+                <td scope="row">
+                    <div class="d-flex gap-2">
+                        <a href="/genres/detail/<%= genre.id %>">
+                            <button class="btn btn-secondary">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </a>
+                        <a href="#">
+                            <button class="btn btn-success">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </a>
+                        <a href="#">
+                            <button class="btn btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </a>
+                    </div>
+                </td>
+                <td scope="row">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                              <span><%= genre.movies.length %></span><span>peliculas</span>
+                            </button>
+                          </h2>
+                          <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">                                <ul>
+                                <% genre.movies.forEach(movie => { %>
+                                    <li><a href="movies/detail/<%= movie.id %>"><%= movie.title %></a></li>
+                                <% }) %>
+                            </ul></div>
+                          </div>
+                        </div>
+                      </div>
+                </td>
+            <% }) %>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
+
+</html>
